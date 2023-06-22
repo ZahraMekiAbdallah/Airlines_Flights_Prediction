@@ -11,7 +11,6 @@ python-dateutil==2.8.2
 pytz==2023.3
 scikit-learn==1.0.2
 scipy==1.10.1
-sklearn==0.0.post5
 streamlit==1.23.1
 tzdata==2023.3
 tzlocal==4.3.1
