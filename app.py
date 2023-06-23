@@ -20,12 +20,12 @@ def prediction(Airline, Source, Destination, Total_Stops, Additional_Info, Arriv
     else:
         diff_time = (Arrival_Datetime - Dep_Datetime)
         test_df = pd.DataFrame(columns=Inputs)
-        test_df.at[0,"Airline"] = 'IndiGo'
-        test_df.at[0,"Source"] = 'Banglore'
-        test_df.at[0,"Destination"] = 'New Delhi'
+        test_df.at[0,"Airline"] = Airline
+        test_df.at[0,"Source"] = Source
+        test_df.at[0,"Destination"] = Destination
         test_df.at[0,"Total_Stops"] = Total_Stops
         test_df.at[0,"Duration_Total_Minutes"] = diff_time.seconds/60
-        test_df.at[0,"Additional_Info"] = 'No info'
+        test_df.at[0,"Additional_Info"] = Additional_Info
         test_df.at[0,"Arrival_Hour"] = Arrival_Time.hour
         test_df.at[0,"Arrival_Minute"] = Arrival_Time.minute
         test_df.at[0,"Dep_Hour"] = Dep_Time.hour
@@ -41,7 +41,6 @@ def prediction(Airline, Source, Destination, Total_Stops, Additional_Info, Arriv
     
 def main():
     st.image('indian_airlines.jpg')
-#     st.title("Indian Airlies")
     Airline = st.selectbox("Airline" , ['Jet Airways', 'IndiGo', 'Air India',
                                         'Multiple carriers', 'SpiceJet', 'Vistara', 'Air Asia', 'GoAir'])
     Source = st.selectbox("Source" , ['Delhi', 'Kolkata', 'Banglore', 'Mumbai', 'Chennai'])
@@ -63,7 +62,7 @@ def main():
                                    ['No info', 'In-flight meal not included', 'No check-in baggage included', 'Other'])    
     Total_Stops = st.selectbox("Total Stops" , [0, 1, 2, 3, 4])
 
-    if st.button("predict"):
+    if st.button("Predict", type='primary'):
         result = prediction(Airline, Source, Destination, Total_Stops, Additional_Info, Arrival_Date, Arrival_Time, Dep_Date, Dep_Time)
         if result:
             st.markdown(f'## Predicted Price will be : {round(result[0], 3)}')
